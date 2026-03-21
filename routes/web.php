@@ -1,34 +1,11 @@
 <?php
 
+use App\Http\Controllers\Clients\PostController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/posts/{id}', [PostController::class, 'show'])->name('posts.show');
 
-Route::get('/abc', function () {
-    return "Trang web ABC";
-});
-
-Route::get('/users/{name}', function ($name) {
-    return "Xin chào $name";
-});
-
-//Trường tham số có tồn tại hoặc không
-Route::get('/comments/{user?}', function ($user = 'Test') {
-    return "Comment của user: $user";
-});
-
-//Nhóm các đường dẫn có chung tiền tố
-Route::prefix('admin')->group(function () {
-    Route::get('/productsnlandflal0s0f0ss0fs0f0s', function () {
-        return "Trang sản phẩm";
-    })->name('products'); //Đặt tên cho đường dẫn
-    Route::get('/users', function () {
-        return "Trang người dùng";
-    });
-});
-
-Route::get('/demo', function () {
-    return view('demo.index');
-});
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
