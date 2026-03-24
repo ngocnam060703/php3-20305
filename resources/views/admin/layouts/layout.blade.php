@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin - @yield('title')</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/admin/style.css') }}">
 </head>
 

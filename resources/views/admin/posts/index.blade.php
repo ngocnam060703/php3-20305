@@ -45,6 +45,8 @@
 
                 </tbody>
             </table>
+
+            {{ $posts->links() }}
         </div>
 
     </div>
