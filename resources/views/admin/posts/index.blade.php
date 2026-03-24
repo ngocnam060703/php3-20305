@@ -26,36 +26,22 @@
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td>#001</td>
-                        <td>
-                            <img src="https://via.placeholder.com/60" alt="">
-                        </td>
-                        <td>Bài viết Laravel</td>
-                        <td>Công nghệ</td>
-                        <td>1200</td>
-                        <td>20/03/2026</td>
-                        <td>
-                            <button class="btn edit">Sửa</button>
-                            <button class="btn delete">Xóa</button>
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>#002</td>
-                        <td>
-                            <img src="https://via.placeholder.com/60" alt="">
-                        </td>
-                        <td>Học React Native</td>
-                        <td>Lập trình</td>
-                        <td>980</td>
-                        <td>18/03/2026</td>
-                        <td>
-                            <button class="btn edit">Sửa</button>
-                            <button class="btn delete">Xóa</button>
-                        </td>
-                    </tr>
+                    @foreach ($posts as $post)
+                        <tr>
+                            <td>{{ $post->id }}</td>
+                            <td>
+                                <img src="{{ Storage::URL($post->image) }}" width="100" alt="">
+                            </td>
+                            <td>{{ $post->title }}</td>
+                            <td> {{ $post->category->name }} </td>
+                            <td> {{ $post->view }} </td>
+                            <td> {{ $post->created_at->format('d/m/Y') }} </td>
+                            <td>
+                                <button class="btn edit">Sửa</button>
+                                <button class="btn delete">Xóa</button>
+                            </td>
+                        </tr>
+                    @endforeach
 
                 </tbody>
             </table>
