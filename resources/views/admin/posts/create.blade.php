@@ -8,12 +8,25 @@
 
             <h2>Thêm bài viết</h2>
 
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form action="{{ route('admin.posts.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <!-- Tiêu đề -->
                 <div class="form-group">
                     <label>Tiêu đề</label>
-                    <input type="text" name="title" placeholder="Nhập tiêu đề">
+                    <input type="text" name="title" value="{{ old('title') }}" placeholder="Nhập tiêu đề">
+                    @error('title')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Danh mục -->
@@ -33,18 +46,27 @@
                 <div class="form-group">
                     <label>Hình ảnh</label>
                     <input type="file" name="image">
+                    @error('image')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Mô tả -->
                 <div class="form-group">
                     <label>Mô tả</label>
-                    <textarea name="description" rows="3" placeholder="Mô tả ngắn"></textarea>
+                    <textarea name="description" rows="3" placeholder="Mô tả ngắn">{{ old('description') }} </textarea>
+                    @error('description')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Nội dung -->
                 <div class="form-group">
                     <label>Nội dung</label>
-                    <textarea name="content" rows="6" placeholder="Nội dung chi tiết"></textarea>
+                    <textarea name="content" rows="6" placeholder="Nội dung chi tiết">{{ old('content') }}</textarea>
+                    @error('content')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <!-- Button -->
